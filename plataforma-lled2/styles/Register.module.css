@@ -1,0 +1,123 @@
+/* Estilos para o Header */
+.header {
+  background-color: #FBD23F;
+  padding: 20px;
+  text-align: center;
+}
+
+.headerTitle {
+  margin: 0;
+  color: #21211E;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.link {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  color: #716968;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.formContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: block;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.image {
+  max-width: 300px; /* Ajuste conforme necessário */
+  height: auto;
+}
+
+.title {
+  color: #333;
+  text-align: center;
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Campos do Formulário */
+.input, .select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+/* Mensagens de Erro e Sucesso */
+.error {
+  color: red;
+  margin: 0 0 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  margin: 0 0 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilos para o Footer */
+.footer {
+  background-color: #21211E;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '@/styles/Register.module.css';  // Importando o arquivo CSS
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [tipo, setTipo] = useState('funcionario'); // Adiciona o estado para tipo
+  const [tipo, setTipo] = useState('funcionario');
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null); // Estado para mensagem de sucesso
+  const [success, setSuccess] = useState(null);
   const router = useRouter();
 
   const handleRegister = async (e) => {
@@ -18,7 +19,7 @@ export default function Register() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, tipo }), // Envia o tipo
+        body: JSON.stringify({ name, email, password, tipo }),
       });
 
       const data = await response.json();
@@ -26,7 +27,7 @@ export default function Register() {
         setSuccess('Cadastro realizado com sucesso! Redirecionando para o login...');
         setTimeout(() => {
           router.push('/login');
-        }, 2000); // Espera 2 segundos antes de redirecionar
+        }, 2000);
       } else {
         setError(data.message || 'Erro ao registrar');
       }
@@ -36,89 +37,74 @@ export default function Register() {
   };
 
   return (
-    <div className="container">
-      <h1>Registrar Usuário</h1>
-      <form onSubmit={handleRegister}>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>} {/* Mensagem de sucesso */}
-        <input
-          type="text"
-          placeholder="Nome Usuário"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email Usuário"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <select
-          value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
-          required
-        >
-          <option value="funcionario">Funcionário</option>
-          <option value="gerente">Gerente</option>
-          <option value="administrador">Administrador</option>
-        </select>
-        <button type="submit">Registrar</button>
-      </form>
-      <style jsx>{`
-        .container {
-          padding: 20px;
-          max-width: 400px;
-          margin: 0 auto;
-        }
-        h1 {
-          color: #333;
-          text-align: center;
-        }
-        form {
-          display: flex;
-          flex-direction: column;
-        }
-        input, select {
-          margin-bottom: 10px;
-          padding: 8px;
-          font-size: 16px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-        button {
-          padding: 10px;
-          background-color: #0070f3;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          font-size: 16px;
-          border-radius: 4px;
-        }
-        button:hover {
-          background-color: #005bb5;
-        }
-        .error {
-          color: red;
-          margin: 0 0 10px;
-          font-size: 14px;
-          text-align: center;
-        }
-        .success {
-          color: green;
-          margin: 0 0 10px;
-          font-size: 14px;
-          text-align: center;
-        }
-      `}</style>
-    </div>
+    <>
+      {/* Header */}
+      <header className={styles.header}>
+        <h1 className={styles.headerTitle}>Plataforma de Cursos Interna - LLED</h1>
+        <nav className={styles.nav}>
+          <a href="/login" className={styles.link}>Login</a>
+          <a href="/register" className={styles.link}>Cadastro</a>
+        </nav>
+      </header>
+
+      {/* Main Container */}
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          <img src="../assets/img/logo.png" alt="img" className={styles.image} />
+          <div className={styles.formWrapper}>
+            <h1 className={styles.title}>Registrar Usuário</h1>
+            <form onSubmit={handleRegister} className={styles.form}>
+              {error && <p className={styles.error}>{error}</p>}
+              {success && <p className={styles.success}>{success}</p>}
+              <img src="../assests/img/logo" alt="Logo" className={styles.logo} />
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Nome Usuário"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                className={styles.input}
+                type="email"
+                placeholder="Email Usuário"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                className={styles.input}
+                type="password"
+                placeholder="Senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <select
+                className={styles.select}
+                value={tipo}
+                onChange={(e) => setTipo(e.target.value)}
+                required
+              >
+                <option value="funcionario">Funcionário</option>
+                <option value="gerente">Gerente</option>
+                <option value="administrador">Administrador</option>
+              </select>
+              <button type="submit" className={styles.button}>Registrar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <p>© 2024 LLED - Plataforma Interna de Cursos</p>
+        <nav className={styles.nav}>
+          <a href="/login" className={styles.link}>Login</a>
+          <a href="/register" className={styles.link}>Cadastro</a>
+        </nav>
+      </footer>
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '../styles/CadCursos.module.css';  // Importando o arquivo CSS
 
 export default function CadCursos() {
   const [title, setTitle] = useState('');
@@ -35,17 +36,25 @@ export default function CadCursos() {
   };
 
   return (
-    <div>
-      <h1>Cadastrar Curso</h1>
-      <form onSubmit={handleSubmit}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <img src="/img/logo.png" alt="Logo" className={styles.logo} />
+        <h1>Cadastrar Curso</h1>
+        <nav className={styles.nav}>
+          <a href="/login">Login</a>
+          <a href="/register">Cadastro</a>
+        </nav>
+      </header>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {error && <p className={styles.error}>{error}</p>}
+        {success && <p className={styles.success}>{success}</p>}
         <input
           type="text"
           placeholder="Título do Curso"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          className={styles.input}
         />
         <input
           type="text"
@@ -53,6 +62,7 @@ export default function CadCursos() {
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
           required
+          className={styles.input}
         />
         <input
           type="number"
@@ -61,8 +71,9 @@ export default function CadCursos() {
           value={preco}
           onChange={(e) => setPreco(e.target.value)}
           required
+          className={styles.input}
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit" className={styles.button}>Cadastrar</button>
       </form>
     </div>
   );

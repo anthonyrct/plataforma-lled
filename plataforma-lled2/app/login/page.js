@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '../styles/Login.module.css';  // Importando o arquivo CSS
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -33,66 +34,42 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        {error && <p className="error-message">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      <style jsx>{`
-        div {
-          padding: 20px;
-          max-width: 400px;
-          margin: 0 auto;
-        }
-        h1 {
-          color: #333;
-          text-align: center;
-        }
-        form {
-          display: flex;
-          flex-direction: column;
-        }
-        input {
-          margin-bottom: 10px;
-          padding: 8px;
-          font-size: 16px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-        button {
-          padding: 10px;
-          background-color: #0070f3;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          font-size: 16px;
-          border-radius: 4px;
-        }
-        button:hover {
-          background-color: #005bb5;
-        }
-        .error-message {
-          color: red;
-          margin: 0 0 10px;
-          font-size: 14px;
-          text-align: center;
-        }
-      `}</style>
-    </div>
+    <>
+      {/* Header */}
+      <header className={styles.header}>
+        <nav className={styles.nav}>
+          <a href="/login">Login</a>
+          <a href="/register">Cadastro</a>
+        </nav>
+      </header>
+
+      {/* Main Container */}
+      <div className={styles.container}>
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          {error && <p className={styles.errorMessage}>{error}</p>}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <p>© 2024 LLED - Plataforma Interna de Cursos</p>
+      </footer>
+    </>
   );
 }

@@ -13,6 +13,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
     "next": "14.2.10",
+    "plataforma-lled2": "file:",
     "react": "^18",
     "react-dom": "^18"
   }
